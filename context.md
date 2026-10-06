@@ -32,7 +32,8 @@ Projektelis yra nedidelė asmeninė užduočių planavimo svetainė. Dabartinėj
 - Užduotys šiuo metu yra statiški pavyzdiniai įrašai, aprašyti `src/App.jsx` konstantoje `tasks`. Jos nesusietos su pasirinktomis kalendoriaus dienomis, negali būti redaguojamos ir nėra saugomos `localStorage`.
 - Mažesniuose ekranuose užduočių sąrašas rodomas virš kalendoriaus.
 - Pagrindiniame puslapyje esantis „+ Nauja užduotis“ mygtukas atveria atskirą naujos užduoties puslapį; jo „Grįžti“ mygtukas grąžina į pagrindinį puslapį. Perjungimą valdo `useState` `src/App.jsx` faile.
-- Naujos užduoties puslapyje šiuo metu yra antraštė „Nauja užduotis“, trumpas paaiškinimas ir grįžimo mygtukas. Užduoties kūrimo forma dar neįgyvendinta.
+- Naujos užduoties puslapyje yra valdomi užduoties pavadinimo, datos ir prioriteto laukai (`Žemas`, `Vidutinis`, `Aukštas`). Pavadinimas ir data yra privalomi; prioritetas pagal numatymą yra „Vidutinis“.
+- Mygtukas „Pridėti užduotį“ pateikia formą, tačiau kol kas įrašas neišsaugomas ir neįtraukiamas į pagrindinio puslapio pavyzdinį sąrašą.
 
 ## Dokumentacijos atnaujinimo taisyklė
 

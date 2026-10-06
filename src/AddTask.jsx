@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import './AddTask.css'
 
-function AddTask({ onBack, onAddTask }) {
+function AddTask({ onBack, onAddTask, initialDate = '' }) {
   const [title, setTitle] = useState('')
-  const [date, setDate] = useState('')
+  const [date, setDate] = useState(initialDate)
   const [priority, setPriority] = useState('Vidutinis')
   const [errors, setErrors] = useState({ title: '', date: '' })
 

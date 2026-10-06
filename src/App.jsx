@@ -3,11 +3,12 @@ import './App.css'
 import AddTask from './AddTask.jsx'
 
 const monthNames = new Intl.DateTimeFormat('lt-LT', { month: 'long', year: 'numeric' })
+const fullDateFormat = new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })
 const weekDays = ['Pr', 'An', 'Tr', 'Kt', 'Pn', 'Št', 'Sk']
 const initialTasks = [
-  { id: 1, title: 'Paruošti savaitės planą', status: 'done', label: 'Atlikta' },
-  { id: 2, title: 'Peržiūrėti projekto užduotis', status: 'pending', label: 'Neatlikta' },
-  { id: 3, title: 'Išsiųsti mėnesio ataskaitą', status: 'overdue', label: 'Vėluoja' },
+  { id: 1, title: 'Paruošti savaitės planą', date: '2026-10-06', priority: 'Vidutinis', status: 'done', label: 'Atlikta' },
+  { id: 2, title: 'Peržiūrėti projekto užduotis', date: '2026-10-06', priority: 'Aukštas', status: 'pending', label: 'Neatlikta' },
+  { id: 3, title: 'Išsiųsti mėnesio ataskaitą', date: '2026-10-06', priority: 'Žemas', status: 'overdue', label: 'Vėluoja' },
 ]
 
 function App() {
@@ -16,6 +17,10 @@ function App() {
   const [selectedDate, setSelectedDate] = useState(today.getDate())
   const [currentPage, setCurrentPage] = useState('home')
   const [tasks, setTasks] = useState(initialTasks)
+  const selectedDateValue = selectedDate
+    ? fullDateFormat.format(new Date(displayedMonth.getFullYear(), displayedMonth.getMonth(), selectedDate))
+    : null
+  const selectedTasks = tasks.filter((task) => task.date === selectedDateValue)
 
   const addTask = ({ title, date, priority }) => {
     setTasks((currentTasks) => {
@@ -48,7 +53,7 @@ function App() {
   const days = [...Array(firstWeekday).fill(null), ...Array.from({ length: daysInMonth }, (_, index) => index + 1)]
 
   if (currentPage === 'add-task') {
-    return <AddTask onBack={() => setCurrentPage('home')} onAddTask={addTask} />
+    return <AddTask onBack={() => setCurrentPage('home')} onAddTask={addTask} initialDate={selectedDateValue ?? ''} />
   }
 
   return (
@@ -65,24 +70,29 @@ function App() {
           <div className="tasks-heading">
             <div>
               <p className="eyebrow">Tavo darbai</p>
-              <h2 id="tasks-heading">Užduotys</h2>
+              <h2 id="tasks-heading">{selectedDate ? 'Užduotys' : 'Pasirink dieną'}</h2>
             </div>
-            <span className="task-count">{tasks.length}</span>
+            {selectedDate && <span className="task-count">{selectedTasks.length}</span>}
           </div>
-          <ul className="task-list">
-            {tasks.map((task) => (
+          {selectedTasks.length > 0 ? (
+            <ul className="task-list">
+            {selectedTasks.map((task) => (
               <li className={`task-item task-${task.status}`} key={task.id}>
                 <span className="task-indicator" aria-hidden="true">{task.status === 'done' ? '✓' : '•'}</span>
                 <span className="task-title">{task.title}</span>
                 <span className="task-status">{task.label}</span>
+                <span className="task-priority">Prioritetas: {task.priority}</span>
               </li>
             ))}
-          </ul>
-          <div className="task-legend" aria-label="Užduočių būsenos">
+            </ul>
+          ) : (
+            <p className="task-empty-state">{selectedDate ? 'Šiai dienai užduočių nėra.' : 'Pasirink kalendoriuje dieną.'}</p>
+          )}
+          {selectedTasks.length > 0 && <div className="task-legend" aria-label="Užduočių būsenos">
             <span><i className="legend-dot legend-done" />Atlikta</span>
             <span><i className="legend-dot legend-pending" />Neatlikta</span>
             <span><i className="legend-dot legend-overdue" />Vėluoja</span>
-          </div>
+          </div>}
         </aside>
 
       <section className="calendar-section" aria-label="Kalendorius">

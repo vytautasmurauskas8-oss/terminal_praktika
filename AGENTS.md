@@ -6,6 +6,7 @@ Markdown
 ## Projekto kontekstas
 Prieš atliekant pakeitimus, perskaitykite `context.md` failą.
 Visada pirmenybę teikite naujausiam projekto kodui, o ne senesnei dokumentacijai.
+Po kiekvieno projekto kodo, stilių, priklausomybių, konfigūracijos ar funkcionalumo pakeitimo tame pačiame darbo etape atnaujinkite `context.md`, kad jis atitiktų galutinę kodo būseną.
 
 ## Technologijos
 - Naudojama React + Vite[cite: 1].

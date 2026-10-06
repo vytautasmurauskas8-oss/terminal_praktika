@@ -30,6 +30,13 @@ Projektelis yra nedidelė asmeninė užduočių planavimo svetainė. Dabartinėj
 - Užduotys šiuo metu yra statiški pavyzdiniai įrašai, aprašyti `src/App.jsx` konstantoje `tasks`. Jos nesusietos su pasirinktomis kalendoriaus dienomis, negali būti redaguojamos ir nėra saugomos `localStorage`.
 - Mažesniuose ekranuose užduočių sąrašas rodomas virš kalendoriaus.
 
+## Dokumentacijos atnaujinimo taisyklė
+
+- Kiekvieną kartą keičiant projekto kodą, stilius, priklausomybes, konfigūraciją ar naudotojui matomą funkcionalumą, tame pačiame darbo etape atnaujinti ir šį `context.md` failą.
+- Atnaujinti tik tas skiltis, kurias paveikė pakeitimas, kad aprašas tiksliai atitiktų esamą kodą. Jei pasikeičia funkcionalumas, pašalinti pasenusius teiginius.
+- Jei pakeitimas nekeičia projekto konteksto (pavyzdžiui, taisoma tik dokumentacijos rašyba), įvertinti, ar konteksto failą reikia atnaujinti.
+- Prieš užbaigiant darbą patikrinti, kad `context.md` atspindi galutinę pakeisto kodo būseną.
+
 ## Sąsajos ir dizaino gairės
 
 - Vartotojui matomą tekstą rašyti lietuviškai, trumpai ir aiškiai.

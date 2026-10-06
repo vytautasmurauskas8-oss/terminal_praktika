@@ -5,6 +5,28 @@
 
 .app-header {
   padding: 46px 24px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.new-task-button {
+  min-height: 46px;
+  padding: 10px 18px;
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  background: var(--accent);
+  color: white;
+  font: 600 15px var(--sans);
+  cursor: pointer;
+}
+
+.new-task-button:hover,
+.new-task-button:focus-visible {
+  outline: none;
+  background: var(--text-h);
 }
 
 .title-outline {
@@ -85,6 +107,7 @@
 .task-indicator { grid-row: span 2; font-size: 18px; font-weight: 700; text-align: center; }
 .task-title { color: var(--text-h); font-size: 14px; line-height: 1.35; }
 .task-status { font-size: 12px; font-weight: 700; }
+.task-priority { grid-column: 2; color: var(--text); font-size: 12px; }
 .task-done .task-indicator, .task-done .task-status { color: #25815d; }
 .task-pending .task-indicator, .task-pending .task-status { color: var(--accent); }
 .task-overdue .task-indicator, .task-overdue .task-status { color: #c64b4b; }
@@ -96,6 +119,7 @@
 .legend-done { background: #25815d; }
 .legend-pending { background: var(--accent); }
 .legend-overdue { background: #c64b4b; }
+.task-empty-state { padding: 18px 12px; border: 1px dashed var(--border); border-radius: 12px; color: var(--text); font-size: 14px; text-align: center; }
 
 .calendar-section { width: 100%; margin: 0; }
 

@@ -14,7 +14,9 @@ Projektelis yra nedidelė asmeninė užduočių planavimo svetainė. Dabartinėj
 
 ## Esama struktūra
 
-- `src/App.jsx` — pagrindinis puslapis, kalendoriaus logika ir pavyzdinių užduočių sąrašas.
+- `src/App.jsx` — pagrindinis puslapis, kalendoriaus logika, React būsenoje laikomas užduočių sąrašas ir paprasta puslapių navigacija.
+- `src/AddTask.jsx` — atskiras naujos užduoties puslapio komponentas.
+- `src/AddTask.css` — naujos užduoties puslapio stiliai.
 - `src/App.css` — puslapio, kalendoriaus, užduočių kortelių ir responsyvaus išdėstymo stiliai.
 - `src/index.css` — globalūs stiliai, spalvų kintamieji ir `#root` išdėstymas.
 - `src/main.jsx` — React programos įėjimo taškas.
@@ -26,9 +28,14 @@ Projektelis yra nedidelė asmeninė užduočių planavimo svetainė. Dabartinėj
 - Kalendorius parodo dabartinį mėnesį ir paryškina šiandienos datą.
 - Mėnesį galima keisti pirmyn ir atgal, o dieną — pasirinkti paspaudus.
 - Po kalendoriumi pateikiama pasirinkta data.
-- Kairėje kalendoriaus pusėje plačiame ekrane rodoma užduočių kortelė su būsenomis „Atlikta“, „Neatlikta“ ir „Vėluoja“.
-- Užduotys šiuo metu yra statiški pavyzdiniai įrašai, aprašyti `src/App.jsx` konstantoje `tasks`. Jos nesusietos su pasirinktomis kalendoriaus dienomis, negali būti redaguojamos ir nėra saugomos `localStorage`.
+- Kairėje kalendoriaus pusėje rodoma tik pasirinktai kalendoriaus dienai priskirtų užduočių kortelė. Kortelėse rodomas pavadinimas, prioritetas ir būsena „Atlikta“, „Neatlikta“ arba „Vėluoja“.
+- Jei pasirinktai dienai užduočių nėra, rodoma „Šiai dienai užduočių nėra.“ Jei diena nepasirinkta, rodomas dienos pasirinkimo nurodymas.
+- Užduočių sąrašas pradedamas trimis pavyzdiniais įrašais su data `2026-10-06` ir laikomas `App` komponento React būsenoje. Naujos užduotys laikomos tik atmintyje ir nėra saugomos `localStorage`.
 - Mažesniuose ekranuose užduočių sąrašas rodomas virš kalendoriaus.
+- Pagrindiniame puslapyje esantis „+ Nauja užduotis“ mygtukas atveria atskirą naujos užduoties puslapį; jo „Grįžti“ mygtukas grąžina į pagrindinį puslapį. Perjungimą valdo `useState` `src/App.jsx` faile.
+- Naujos užduoties puslapyje yra valdomi užduoties pavadinimo, datos ir prioriteto laukai (`Žemas`, `Vidutinis`, `Aukštas`). Pasirinkta kalendoriaus diena iš anksto užpildo datos lauką. Pavadinimas ir data yra privalomi; prioritetas pagal numatymą yra „Vidutinis“.
+- Pateikus formą be pavadinimo ar datos, po trūkstamu lauku parodoma lietuviška klaida ir forma neužbaigiama. Pataisius lauką, atitinkama klaida iškart pašalinama.
+- Sėkmingai pateikus formą, užduotis su unikaliu ID, pavadinimu, data, prioritetu ir būsena „Neatlikta“ įtraukiama į React state ir vartotojas grąžinamas į pagrindinį puslapį. Užduotis rodoma pasirinkus jai priskirtą datą; sąrašas atnaujinamas iškart, bet po puslapio perkrovimo duomenys neišsaugomi.
 
 ## Dokumentacijos atnaujinimo taisyklė
 

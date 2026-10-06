@@ -14,7 +14,9 @@ Projektelis yra nedidelė asmeninė užduočių planavimo svetainė. Dabartinėj
 
 ## Esama struktūra
 
-- `src/App.jsx` — pagrindinis puslapis, kalendoriaus logika ir pavyzdinių užduočių sąrašas.
+- `src/App.jsx` — pagrindinis puslapis, kalendoriaus logika, pavyzdinių užduočių sąrašas ir paprasta puslapių navigacija.
+- `src/AddTask.jsx` — atskiras naujos užduoties puslapio komponentas.
+- `src/AddTask.css` — naujos užduoties puslapio stiliai.
 - `src/App.css` — puslapio, kalendoriaus, užduočių kortelių ir responsyvaus išdėstymo stiliai.
 - `src/index.css` — globalūs stiliai, spalvų kintamieji ir `#root` išdėstymas.
 - `src/main.jsx` — React programos įėjimo taškas.
@@ -29,6 +31,8 @@ Projektelis yra nedidelė asmeninė užduočių planavimo svetainė. Dabartinėj
 - Kairėje kalendoriaus pusėje plačiame ekrane rodoma užduočių kortelė su būsenomis „Atlikta“, „Neatlikta“ ir „Vėluoja“.
 - Užduotys šiuo metu yra statiški pavyzdiniai įrašai, aprašyti `src/App.jsx` konstantoje `tasks`. Jos nesusietos su pasirinktomis kalendoriaus dienomis, negali būti redaguojamos ir nėra saugomos `localStorage`.
 - Mažesniuose ekranuose užduočių sąrašas rodomas virš kalendoriaus.
+- Pagrindiniame puslapyje esantis „+ Nauja užduotis“ mygtukas atveria atskirą naujos užduoties puslapį; jo „Grįžti“ mygtukas grąžina į pagrindinį puslapį. Perjungimą valdo `useState` `src/App.jsx` faile.
+- Naujos užduoties puslapyje šiuo metu yra antraštė „Nauja užduotis“, trumpas paaiškinimas ir grįžimo mygtukas. Užduoties kūrimo forma dar neįgyvendinta.
 
 ## Dokumentacijos atnaujinimo taisyklė
 

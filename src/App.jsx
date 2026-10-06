@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import AddTask from './AddTask.jsx'
 
 const monthNames = new Intl.DateTimeFormat('lt-LT', { month: 'long', year: 'numeric' })
 const weekDays = ['Pr', 'An', 'Tr', 'Kt', 'Pn', 'Št', 'Sk']
@@ -13,6 +14,7 @@ function App() {
   const today = new Date()
   const [displayedMonth, setDisplayedMonth] = useState(new Date(today.getFullYear(), today.getMonth(), 1))
   const [selectedDate, setSelectedDate] = useState(today.getDate())
+  const [currentPage, setCurrentPage] = useState('home')
 
   const shiftMonth = (offset) => {
     setDisplayedMonth((month) => new Date(month.getFullYear(), month.getMonth() + offset, 1))
@@ -23,10 +25,17 @@ function App() {
   const daysInMonth = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth() + 1, 0).getDate()
   const days = [...Array(firstWeekday).fill(null), ...Array.from({ length: daysInMonth }, (_, index) => index + 1)]
 
+  if (currentPage === 'add-task') {
+    return <AddTask onBack={() => setCurrentPage('home')} />
+  }
+
   return (
     <main className="app-main">
       <header className="app-header">
         <h1 className="title-outline">To Do List!</h1>
+        <button className="new-task-button" type="button" onClick={() => setCurrentPage('add-task')}>
+          + Nauja užduotis
+        </button>
       </header>
 
       <div className="planner-layout">

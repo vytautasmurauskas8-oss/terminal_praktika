@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './AddTask.css'
 
-function AddTask({ onBack }) {
+function AddTask({ onBack, onAddTask }) {
   const [title, setTitle] = useState('')
   const [date, setDate] = useState('')
   const [priority, setPriority] = useState('Vidutinis')
@@ -18,6 +18,8 @@ function AddTask({ onBack }) {
     setErrors(nextErrors)
 
     if (nextErrors.title || nextErrors.date) return
+
+    onAddTask({ title: title.trim(), date, priority })
   }
 
   return (

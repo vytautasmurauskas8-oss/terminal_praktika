@@ -4,7 +4,7 @@ import AddTask from './AddTask.jsx'
 
 const monthNames = new Intl.DateTimeFormat('lt-LT', { month: 'long', year: 'numeric' })
 const weekDays = ['Pr', 'An', 'Tr', 'Kt', 'Pn', 'Št', 'Sk']
-const tasks = [
+const initialTasks = [
   { id: 1, title: 'Paruošti savaitės planą', status: 'done', label: 'Atlikta' },
   { id: 2, title: 'Peržiūrėti projekto užduotis', status: 'pending', label: 'Neatlikta' },
   { id: 3, title: 'Išsiųsti mėnesio ataskaitą', status: 'overdue', label: 'Vėluoja' },
@@ -15,6 +15,28 @@ function App() {
   const [displayedMonth, setDisplayedMonth] = useState(new Date(today.getFullYear(), today.getMonth(), 1))
   const [selectedDate, setSelectedDate] = useState(today.getDate())
   const [currentPage, setCurrentPage] = useState('home')
+  const [tasks, setTasks] = useState(initialTasks)
+
+  const addTask = ({ title, date, priority }) => {
+    setTasks((currentTasks) => {
+      const nextId = currentTasks.reduce((largestId, task) => (
+        typeof task.id === 'number' ? Math.max(largestId, task.id) : largestId
+      ), 0) + 1
+
+      return [
+        ...currentTasks,
+        {
+          id: nextId,
+          title,
+          date,
+          priority,
+          status: 'pending',
+          label: 'Neatlikta',
+        },
+      ]
+    })
+    setCurrentPage('home')
+  }
 
   const shiftMonth = (offset) => {
     setDisplayedMonth((month) => new Date(month.getFullYear(), month.getMonth() + offset, 1))
@@ -26,7 +48,7 @@ function App() {
   const days = [...Array(firstWeekday).fill(null), ...Array.from({ length: daysInMonth }, (_, index) => index + 1)]
 
   if (currentPage === 'add-task') {
-    return <AddTask onBack={() => setCurrentPage('home')} />
+    return <AddTask onBack={() => setCurrentPage('home')} onAddTask={addTask} />
   }
 
   return (

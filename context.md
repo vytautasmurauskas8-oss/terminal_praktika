@@ -14,7 +14,7 @@ Projektelis yra nedidelė asmeninė užduočių planavimo svetainė. Dabartinėj
 
 ## Esama struktūra
 
-- `src/App.jsx` — pagrindinis puslapis, kalendoriaus logika, pavyzdinių užduočių sąrašas ir paprasta puslapių navigacija.
+- `src/App.jsx` — pagrindinis puslapis, kalendoriaus logika, React būsenoje laikomas užduočių sąrašas ir paprasta puslapių navigacija.
 - `src/AddTask.jsx` — atskiras naujos užduoties puslapio komponentas.
 - `src/AddTask.css` — naujos užduoties puslapio stiliai.
 - `src/App.css` — puslapio, kalendoriaus, užduočių kortelių ir responsyvaus išdėstymo stiliai.
@@ -29,12 +29,12 @@ Projektelis yra nedidelė asmeninė užduočių planavimo svetainė. Dabartinėj
 - Mėnesį galima keisti pirmyn ir atgal, o dieną — pasirinkti paspaudus.
 - Po kalendoriumi pateikiama pasirinkta data.
 - Kairėje kalendoriaus pusėje plačiame ekrane rodoma užduočių kortelė su būsenomis „Atlikta“, „Neatlikta“ ir „Vėluoja“.
-- Užduotys šiuo metu yra statiški pavyzdiniai įrašai, aprašyti `src/App.jsx` konstantoje `tasks`. Jos nesusietos su pasirinktomis kalendoriaus dienomis, negali būti redaguojamos ir nėra saugomos `localStorage`.
+- Sąrašas pradedamas trimis pavyzdinėmis užduotimis ir laikomas `App` komponento React būsenoje. Užduotis galima pridėti per naujos užduoties formą; jos kol kas nėra saugomos `localStorage`.
 - Mažesniuose ekranuose užduočių sąrašas rodomas virš kalendoriaus.
 - Pagrindiniame puslapyje esantis „+ Nauja užduotis“ mygtukas atveria atskirą naujos užduoties puslapį; jo „Grįžti“ mygtukas grąžina į pagrindinį puslapį. Perjungimą valdo `useState` `src/App.jsx` faile.
 - Naujos užduoties puslapyje yra valdomi užduoties pavadinimo, datos ir prioriteto laukai (`Žemas`, `Vidutinis`, `Aukštas`). Pavadinimas ir data yra privalomi; prioritetas pagal numatymą yra „Vidutinis“.
 - Pateikus formą be pavadinimo ar datos, po trūkstamu lauku parodoma lietuviška klaida ir forma neužbaigiama. Pataisius lauką, atitinkama klaida iškart pašalinama.
-- Mygtukas „Pridėti užduotį“ pateikia formą, tačiau kol kas įrašas neišsaugomas ir neįtraukiamas į pagrindinio puslapio pavyzdinį sąrašą.
+- Sėkmingai pateikus formą, užduotis su unikaliu ID, pavadinimu, data, prioritetu ir būsena „Neatlikta“ įtraukiama į React state ir vartotojas grąžinamas į pagrindinį puslapį. Pagrindiniame sąraše rodoma jos būsena ir pavadinimas; sąrašas atnaujinamas iškart, bet po puslapio perkrovimo duomenys neišsaugomi.
 
 ## Dokumentacijos atnaujinimo taisyklė
 

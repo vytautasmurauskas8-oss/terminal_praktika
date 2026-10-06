@@ -64,6 +64,16 @@
 
 .add-task-field input::placeholder { color: var(--text); opacity: .75; }
 
+.add-task-field input[aria-invalid="true"] {
+  border-color: #c64b4b;
+}
+
+.add-task-error {
+  color: #b63d3d;
+  font-size: 13px;
+  font-weight: 500;
+}
+
 .add-task-submit {
   min-height: 48px;
   margin-top: 4px;

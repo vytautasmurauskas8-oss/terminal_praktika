@@ -33,6 +33,7 @@ Projektelis yra nedidelė asmeninė užduočių planavimo svetainė. Dabartinėj
 - Mažesniuose ekranuose užduočių sąrašas rodomas virš kalendoriaus.
 - Pagrindiniame puslapyje esantis „+ Nauja užduotis“ mygtukas atveria atskirą naujos užduoties puslapį; jo „Grįžti“ mygtukas grąžina į pagrindinį puslapį. Perjungimą valdo `useState` `src/App.jsx` faile.
 - Naujos užduoties puslapyje yra valdomi užduoties pavadinimo, datos ir prioriteto laukai (`Žemas`, `Vidutinis`, `Aukštas`). Pavadinimas ir data yra privalomi; prioritetas pagal numatymą yra „Vidutinis“.
+- Pateikus formą be pavadinimo ar datos, po trūkstamu lauku parodoma lietuviška klaida ir forma neužbaigiama. Pataisius lauką, atitinkama klaida iškart pašalinama.
 - Mygtukas „Pridėti užduotį“ pateikia formą, tačiau kol kas įrašas neišsaugomas ir neįtraukiamas į pagrindinio puslapio pavyzdinį sąrašą.
 
 ## Dokumentacijos atnaujinimo taisyklė

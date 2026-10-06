@@ -5,9 +5,19 @@ function AddTask({ onBack }) {
   const [title, setTitle] = useState('')
   const [date, setDate] = useState('')
   const [priority, setPriority] = useState('Vidutinis')
+  const [errors, setErrors] = useState({ title: '', date: '' })
 
   const handleSubmit = (event) => {
     event.preventDefault()
+
+    const nextErrors = {
+      title: title.trim() ? '' : 'Įvesk užduoties pavadinimą.',
+      date: date ? '' : 'Pasirink užduoties datą.',
+    }
+
+    setErrors(nextErrors)
+
+    if (nextErrors.title || nextErrors.date) return
   }
 
   return (
@@ -22,10 +32,16 @@ function AddTask({ onBack }) {
             <input
               type="text"
               value={title}
-              onChange={(event) => setTitle(event.target.value)}
+              onChange={(event) => {
+                const value = event.target.value
+                setTitle(value)
+                if (value.trim()) setErrors((current) => ({ ...current, title: '' }))
+              }}
               placeholder="Įrašyk užduoties pavadinimą"
-              required
+              aria-invalid={Boolean(errors.title)}
+              aria-describedby={errors.title ? 'task-title-error' : undefined}
             />
+            {errors.title && <span className="add-task-error" id="task-title-error" role="alert">{errors.title}</span>}
           </label>
 
           <label className="add-task-field">
@@ -33,9 +49,15 @@ function AddTask({ onBack }) {
             <input
               type="date"
               value={date}
-              onChange={(event) => setDate(event.target.value)}
-              required
+              onChange={(event) => {
+                const value = event.target.value
+                setDate(value)
+                if (value) setErrors((current) => ({ ...current, date: '' }))
+              }}
+              aria-invalid={Boolean(errors.date)}
+              aria-describedby={errors.date ? 'task-date-error' : undefined}
             />
+            {errors.date && <span className="add-task-error" id="task-date-error" role="alert">{errors.date}</span>}
           </label>
 
           <label className="add-task-field">
